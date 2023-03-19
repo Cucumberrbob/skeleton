@@ -40,7 +40,7 @@
 		let matched = false;
 
 		keys.forEach((key) => {
-			const stringyValue = JSON.stringify(obj[key]).replaceAll('"','').toLowerCase();
+			const stringyValue = JSON.stringify(obj[key]).replaceAll('"', '').toLowerCase();
 			matched = stringyValue.includes(inputFormatted);
 		});
 
@@ -147,7 +147,7 @@
 
 <div
 	class="autocomplete overflow-y-auto {classesSelect}"
-	{...prunedRestProps}
+	{...prunedRestProps()}
 	role="listbox"
 	aria-autocomplete="list"
 	data-testid="autocomplete"

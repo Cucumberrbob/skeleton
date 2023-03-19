@@ -11,6 +11,7 @@
 	import type { PopupSettings } from '$lib/utilities/Popup/types';
 	// Sveld
 	import sveldAutocomplete from '$lib/components/Autocomplete/Autocomplete.svelte?raw&sveld';
+	import { autocompleteKeyboard } from '$lib/components/Autocomplete/autocompleteKeyboard';
 
 	// Docs Shell
 	const settings: DocsShellSettings = {
@@ -66,10 +67,17 @@
 						bind:value={searchValue}
 						placeholder="Begin typing to filter..."
 						use:popup={popupSettings}
+						use:autocompleteKeyboard={{ target: 'popupAutocomplete', highlightClass: 'variant-ringed-primary' }}
 					/>
 					<!-- Autocomplete -->
 					<div class="w-[280px]" data-popup="popupAutocomplete">
-						<Autocomplete bind:input={searchValue} mode="fuzzy" options={anythingList} on:selection={onSelection} />
+						<Autocomplete
+							bind:input={searchValue}
+							mode="fuzzy"
+							data-autocomplete="popupAutocomplete"
+							options={anythingList}
+							on:selection={onSelection}
+						/>
 					</div>
 				</div>
 			</svelte:fragment>
