@@ -57,9 +57,11 @@ export function autocompleteKeyboard(node: HTMLElement, args: AutocompleteKeyboa
 			e.preventDefault();
 			clickOption(focusIndex);
 		} else {
-			// we want to reset the highlight back to the top whenever the search term changes
-			focusIndex === 0 && highlightOption(focusIndex);
+			if (focusIndex) {
+				unhighlightOption(focusIndex);
+			}
 			focusIndex = 0;
+			highlightOption(focusIndex);
 		}
 	}
 	node.addEventListener('keydown', onKeyDown);
