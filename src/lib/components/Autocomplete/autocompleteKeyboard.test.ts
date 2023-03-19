@@ -39,7 +39,7 @@ describe<TestContext>('Actions: autocompleteKeyboard', () => {
 	it<TestContext>('Moves the ring to the second element when the down arrow is pressed', async (context) => {
 		const { inputEl, renderedComponent } = context;
 
-		inputEl.dispatchEvent(new KeyboardEvent('keyup', { key: 'ArrowDown' }));
+		inputEl.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
 		const secondOption = renderedComponent.getByText('Foobar');
 		expect(secondOption.parentElement?.classList.contains('variant-ringed-tertiary')).toBe(true);
 	});
@@ -69,14 +69,14 @@ describe<TestContext>('Actions: autocompleteKeyboard', () => {
 			highlightClass: 'variant-ringed-tertiary'
 		});
 
-		inputEl.dispatchEvent(new KeyboardEvent('keyup', { key: 'ArrowDown' }));
+		inputEl.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
 		const expectedOption = renderedComponent.getByText('Barney');
 		expect(expectedOption.parentElement?.classList.contains('variant-ringed-tertiary')).toBe(true);
 	});
 	it<TestContext>('Moves the ring to the last element when the up arrow is pressed and the first option is ringed', async (context) => {
 		const { inputEl, renderedComponent } = context;
 
-		inputEl.dispatchEvent(new KeyboardEvent('keyup', { key: 'ArrowUp' }));
+		inputEl.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp' }));
 		const expectedOption = renderedComponent.getByText('Barney');
 		expect(expectedOption.parentElement?.classList.contains('variant-ringed-tertiary')).toBe(true);
 	});
@@ -87,8 +87,8 @@ describe<TestContext>('Actions: autocompleteKeyboard', () => {
 		const selectHandler = vi.fn((e) => (selected = e.detail.selection));
 		renderedComponent.component.$on('selection', selectHandler);
 
-		inputEl.dispatchEvent(new KeyboardEvent('keyup', { key: 'ArrowDown' }));
-		inputEl.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter' }));
+		inputEl.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown' }));
+		inputEl.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
 		expect(selected.value).toBe('Foobar');
 	});
 });

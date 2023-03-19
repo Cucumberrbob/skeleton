@@ -41,7 +41,7 @@ export function autocompleteKeyboard(node: HTMLElement, args: AutocompleteKeyboa
 		args.highlightClass.split(' ').forEach((c) => currentOption.classList.remove(c));
 	}
 
-	function onKeyUp(e: KeyboardEvent) {
+	function onKeyDown(e: KeyboardEvent) {
 		if (e.key === 'ArrowDown') {
 			e.preventDefault();
 			unhighlightOption(focusIndex);
@@ -62,7 +62,7 @@ export function autocompleteKeyboard(node: HTMLElement, args: AutocompleteKeyboa
 			focusIndex = 0;
 		}
 	}
-	node.addEventListener('keyup', onKeyUp);
+	node.addEventListener('keydown', onKeyDown);
 
 	// set the first option as highlighted initially
 	highlightOption(focusIndex);
@@ -70,7 +70,7 @@ export function autocompleteKeyboard(node: HTMLElement, args: AutocompleteKeyboa
 	// Lifecycle
 	return {
 		destroy() {
-			node.removeEventListener('keyup', onKeyUp);
+			node.removeEventListener('keydown', onKeyDown);
 		}
 	};
 }
