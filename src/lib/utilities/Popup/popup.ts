@@ -136,7 +136,6 @@ export function popup(node: HTMLElement, args: PopupSettings) {
 		close();
 	}
 	function onMouseDown(e: MouseEvent) {
-		e.preventDefault();
 		if (isNode(document.activeElement)) {
 			if (!node.isSameNode(document.activeElement)) {
 				node.focus();
